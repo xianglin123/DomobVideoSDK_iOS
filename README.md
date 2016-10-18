@@ -11,31 +11,96 @@ Domob视频SDKSDK包的内容如下:
 3.SDKUserGuide.pdf
 * Domob iOS 视频 SDK 的用户指南文档
 
+![image](https://github.com/domobVideoSDK/Video_SDK_iOS/blob/master/images/lib.png)
+
+```java  
+  
+#import "IndependentVideoManager.h"
+
+@interface ViewController: UIViewController<IndependentVideoManagerDelegate> {
+    IndependentVideoManager *_manager;
+}
+
+@implementation ViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // 设置实现了IndependentVideoManagerDelegate协议的对象，一般为self。
+    _manager = [[IndependentVideoManager alloc] initWithPublisherID:@"申请的publishId" andUserID:nil];
+    _manager.delegate = self;
+}
+
+
+// 通过实现IndependentVideoManagerDelegate中定义的方法，来跟踪视频生命周期的各个阶段。所有这些方法也都定义在IndependentVideoManager.h中，如下：
+#pragma mark - video present callback 视频展现回调
+// 开始加载数据。
+- (void)ivManagerDidStartLoad:(IndependentVideoManager *)manager;
+
+// 加载完成。
+- (void)ivManagerDidFinishLoad:(IndependentVideoManager *)manager fin-ished:(BOOL)isFinished;
+
+// 加载失败，可能的原因由error提供，如网络连接失败、被禁用等。
+- (void)ivManager:(IndependentVideoManager *)manager
+failedLoadWithError:(NSError *)error;
+
+// 当视频要被呈现出来时，回调该方法
+- (void)ivManagerWillPresent:(IndependentVideoManager *)manager
+
+// 视频播放完成.
+- (void)ivManagerCompletePlayVideo:(IndependentVideoManager *)manager;
+
+// 播放视频失败
+- (void)ivManagerPlayIndependentVideo:(IndependentVideoManager *)manager
+                            withError:(NSError *)error
+
+// 当视频被关闭。
+- (void)ivManagerDidClosed:(IndependentVideoManager *)manager
+
+// 检查视频状态的回调
+- (void)ivManager:(IndependentVideoManager *)manager
+isIndependentVideoAvailable:(BOOL)available
+
+
+// 检查是否有视频广告可以播放：
+- (IBAction)checkVideoAvailable {
+    
+    [_manager checkVideoAvailable];
+    
+}
+
+// 设置是否在播放完成后弹出弹框,默认为NO,为弹出：
+_manager.disableShowAlert = YES;
+
+  
+```
+
+
 ##DOMOB iOS independent video sdk changelog
 
-###3.3.4
+###3.3.4&emsp;&emsp;2016/10/17
 
 1.优化iOS10系统下获取idfa为0值时无视频的弹窗提示
 
 =================================
-###3.3.3
+###3.3.3  2016/09/22
 
 1.新增竖屏/倒竖屏游戏适配
 
 2.bug fix 
 
 =================================
-###3.3.2
+###3.3.2  2016/09/06
 
 1.fix无网络状态播放视频的bug
 
 =================================
-###3.3.1
+###3.3.1  2016/08/12
 
 1.bug fix
 
 =================================
-###3.3.0
+###3.3.0  2016/07/22
 
 1.bug fix
 
@@ -45,7 +110,7 @@ Domob视频SDKSDK包的内容如下:
 
 _________________________________________
 
-###3.2.0
+###3.2.0  2016/06/15
 
 1.去掉加载视图界面 
 
@@ -57,14 +122,14 @@ _________________________________________
 
 _________________________________________
 
-###3.1.1
+###3.1.1  2016/06/05
 
 1.bug fix
 2.去掉获取用户location信息
 
 _________________________________________
 
-###3.1.0
+###3.1.0  2016/01/19
 
 1.加载界面视觉优化 
 
@@ -76,7 +141,7 @@ _________________________________________
 
 _________________________________________
 
-###3.0.0
+###3.0.0  2015/12/29
 
 1.预加载优化
 
@@ -90,7 +155,7 @@ _________________________________________
 
 _________________________________________
 
-###2.2.0
+###2.2.0  2015/08/05
 
 1.弹框样式改变 
 
@@ -100,7 +165,7 @@ _________________________________________
 
 _________________________________________
 
-###2.1.0
+###2.1.0  2015/04/13
 
 1.预加载优化
 
@@ -111,28 +176,28 @@ _________________________________________
 _________________________________________
 
 
-###2.0.0
+###2.0.0  2015/02/05
 
 
 1.模板优化
 _________________________________________
 
 
-###1.3.2
+###1.3.2  2015/01/19
 
 
 1.增加视频完成播放的回调
 _________________________________________
 
 
-###1.3.1
+###1.3.1  2015/01/09
 
 
 1.bug fix
 _________________________________________
 
 
-###1.3.0
+###1.3.0  2014/12/03
 
 
 1.更新SDK使用接口
@@ -173,6 +238,6 @@ _________________________________________
 _________________________________________
 
 
-###1.0.0
+###1.0.0  2014
 原始版本
 --------------------------
