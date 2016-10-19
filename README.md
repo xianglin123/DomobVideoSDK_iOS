@@ -8,7 +8,7 @@
 
 
 ####2．视频SDK的使用
-* 1.获取Publisher ID,请从多盟视频官网（http://dvx.domob.cn) 的获取您的
+* 1.获取Publisher ID,请从多盟官网（http://www.domob.cn) 的获取您的
 Publisher ID。
 
 * 2.可以跟据自己需求切换Publisher ID的测试、正式和暂停状态，测试状态只能请求到测试视频
@@ -38,7 +38,7 @@ Publisher ID。
 
 * 更多接口信息，请参考SDK包中的头文件中包含的信息。
 
-* 更详细的使用方法，请参考项目中的Sample程序。
+* 更详细的使用方法，请参考项目中的Sample程序和多盟官网（http://www.domob.cn)
 
 * 如还有疑问，欢迎随时发邮件到support@domob.cn获得更多帮助。
 
