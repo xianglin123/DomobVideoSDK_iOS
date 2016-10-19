@@ -11,11 +11,29 @@ Domob视频SDKSDK包的内容如下:
 3.SDKUserGuide.pdf
 * Domob iOS 视频 SDK 的用户指南文档
 
-![image](https://github.com/domobVideoSDK/Video_SDK_iOS/blob/master/images/lib.png | width=100)
+4.SDK文档说明
 
 ```java  
   
 #import "IndependentVideoManager.h"
+
+// 检查视频当前状态
+typedef enum {
+    
+    /**
+     *  视频正在下载
+     */
+    eIVVideoStateDownloading = 0,
+    /**
+     *  视频已成功缓存
+     */
+    eIVVideoStateFinishedCache,
+    /**
+     *  无可播放的视频
+     */
+    eIVVideoStateNoExist
+    
+}IndependentVideoAvailableState;
 
 @interface ViewController: UIViewController<IndependentVideoManagerDelegate> {
     IndependentVideoManager *_manager;
@@ -59,7 +77,7 @@ failedLoadWithError:(NSError *)error;
 
 // 检查视频状态的回调
 - (void)ivManager:(IndependentVideoManager *)manager
-isIndependentVideoAvailable:(BOOL)available
+isIndependentVideoAvailable:(IndependentVideoAvailableState)availableState
 
 
 // 检查是否有视频广告可以播放：
