@@ -1,97 +1,46 @@
 # Video_SDK_iOS
 
-Domob视频SDKSDK包的内容如下: 
+####1．必要条件
 
-1.IndependentVideoSDK:
-* 包含 Domob iOS 视频积分墙 SDK 库文件、头文件以及相关支持文件
+* 1.使用Xcode 6或更高版本
 
-2.IndependentVideoSample:示例工程(含有IndependentVideoSDK)。
-* 为了在运行示例工程时能出广告,请从多盟视频官网（http://dvx.domob.cn) 的获取您的Publisher ID替换Samples中的ID。
-
-3.SDKUserGuide.pdf
-* Domob iOS 视频 SDK 的用户指南文档
-
-4.SDK文档说明
-
-```java  
-  
-#import "IndependentVideoManager.h"
-
-// 检查视频当前状态
-typedef enum {
-    
-    /**
-     *  视频正在下载
-     */
-    eIVVideoStateDownloading = 0,
-    /**
-     *  视频已成功缓存
-     */
-    eIVVideoStateFinishedCache,
-    /**
-     *  无可播放的视频
-     */
-    eIVVideoStateNoExist
-    
-}IndependentVideoAvailableState;
-
-@interface ViewController: UIViewController<IndependentVideoManagerDelegate> {
-    IndependentVideoManager *_manager;
-}
-
-@implementation ViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // 设置实现了IndependentVideoManagerDelegate协议的对象，一般为self。
-    _manager = [[IndependentVideoManager alloc] initWithPublisherID:@"申请的publishId" andUserID:nil];
-    _manager.delegate = self;
-}
+* 2.运行环境为iOS 7.0或更高版本
 
 
-// 通过实现IndependentVideoManagerDelegate中定义的方法，来跟踪视频生命周期的各个阶段。所有这些方法也都定义在IndependentVideoManager.h中，如下：
-#pragma mark - video present callback 视频展现回调
-// 开始加载数据。
-- (void)ivManagerDidStartLoad:(IndependentVideoManager *)manager;
+####2．视频SDK的使用
+* 1.获取Publisher ID,请从多盟视频官网（http://dvx.domob.cn) 的获取您的
+Publisher ID。
 
-// 加载完成。
-- (void)ivManagerDidFinishLoad:(IndependentVideoManager *)manager fin-ished:(BOOL)isFinished;
+* 2.可以跟据自己需求切换Publisher ID的测试、正式和暂停状态，测试状态只能请求到测试视频
 
-// 加载失败，可能的原因由error提供，如网络连接失败、被禁用等。
-- (void)ivManager:(IndependentVideoManager *)manager
-failedLoadWithError:(NSError *)error;
+* 3.将SDK添加到项目中
 
-// 当视频要被呈现出来时，回调该方法
-- (void)ivManagerWillPresent:(IndependentVideoManager *)manager
+  * 1.将SDK包添加到您的项目中。建议直接将“IndependentVideo”文件夹添加到项目中。
 
-// 视频播放完成.
-- (void)ivManagerCompletePlayVideo:(IndependentVideoManager *)manager;
+  * 2.若要SDK正常工作，并添加一些依赖库(详见工程中的集成文档 SDKUserGuide.pdf) 
+ 
+* 4.Build Settings中other link flags 选项添加-ObjC：
+ 
+* 5.若要在应用中添加视频广告，只需要简单的几步：
 
-// 播放视频失败
-- (void)ivManagerPlayIndependentVideo:(IndependentVideoManager *)manager
-                            withError:(NSError *)error
+	* 导入IndependentVideoManager.h 头文件。
 
-// 当视频被关闭。
-- (void)ivManagerDidClosed:(IndependentVideoManager *)manager
+	* 声明一个IndependentVideoManager的实例。
 
-// 检查视频状态的回调
-- (void)ivManager:(IndependentVideoManager *)manager
-isIndependentVideoAvailable:(IndependentVideoAvailableState)availableState
+	* 实现IndependentVideoManagerDelegate。
 
+	* 使用您从多盟官网获得的PublisherId来初始化IndependentVideoManager。
 
-// 检查是否有视频广告可以播放：
-- (IBAction)checkVideoAvailable {
-    
-    [_manager checkVideoAvailable];
-    
-}
+	* 设置IndependentVideoManager的代理。
 
-// 设置是否在播放完成后弹出弹框,默认为NO,为弹出：
-_manager.disableShowAlert = YES;
+####3．其他
+* 具体API使用详见工程中的集成文档SDKUserGuide.pdf或者Wiki
 
-  
-```
+* 更多接口信息，请参考SDK包中的头文件中包含的信息。
+
+* 更详细的使用方法，请参考项目中的Sample程序。
+
+* 如还有疑问，欢迎随时发邮件到support@domob.cn获得更多帮助。
 
 
 ##DOMOB iOS independent video sdk changelog
