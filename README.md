@@ -11,7 +11,7 @@ Domob视频SDKSDK包的内容如下:
 3.SDKUserGuide.pdf
 * Domob iOS 视频 SDK 的用户指南文档
 
-![image](https://github.com/domobVideoSDK/Video_SDK_iOS/blob/master/images/lib.png)
+![image](https://github.com/domobVideoSDK/Video_SDK_iOS/blob/master/images/lib.png | width=100)
 
 ```java  
   
